@@ -14,7 +14,6 @@ void core0_main(void)
 
     start_tasks();
 
-
     while (1)
     {
     }

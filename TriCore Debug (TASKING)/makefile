@@ -71,44 +71,44 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Concurrency_Part1_Deadlock
+BUILD_ARTIFACT_NAME := Concurrency_Part1
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 SECONDARY_SIZE += \
-Concurrency_Part1_Deadlock.siz \
+Concurrency_Part1.siz \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Concurrency_Part1_Deadlock.elf secondary-outputs
+main-build: Concurrency_Part1.elf secondary-outputs
 
 # Tool invocations
-Concurrency_Part1_Deadlock.elf: $(OBJS) makefile $(OPTIONAL_TOOL_DEPS) .Concurrency_Part1_Deadlock.elf.opt
+Concurrency_Part1.elf: $(OBJS) makefile $(OPTIONAL_TOOL_DEPS) .Concurrency_Part1.elf.opt
 	@echo 'Building target: $@'
 	@echo 'Invoking: TASKING Linker'
-	cctc -f .Concurrency_Part1_Deadlock.elf.opt
+	cctc -f .Concurrency_Part1.elf.opt
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-.Concurrency_Part1_Deadlock.elf.opt:
-	@argfile .Concurrency_Part1_Deadlock.elf.opt --lsl-file="../Lcf_Tasking_Tricore_Tc.lsl" -Wl-Oc -Wl-OL -Wl-Ot -Wl-Ox -Wl-Oy -Wl--map-file="Concurrency_Part1_Deadlock.map" -Wl-mc -Wl-mf -Wl-mi -Wl-mk -Wl-ml -Wl-mm -Wl-md -Wl-mr -Wl-mu --no-warnings= -Wl--error-limit=42 --fp-model=3 -lrt --lsl-core=vtc --exceptions --strict --anachronisms --force-c++ -Ctc37x -o"Concurrency_Part1_Deadlock.elf" -Wl-o"Concurrency_Part1_Deadlock.hex:IHEX" $(OBJS)
+.Concurrency_Part1.elf.opt:
+	@argfile .Concurrency_Part1.elf.opt --lsl-file="../Lcf_Tasking_Tricore_Tc.lsl" -Wl-Oc -Wl-OL -Wl-Ot -Wl-Ox -Wl-Oy -Wl--map-file="Concurrency_Part1.map" -Wl-mc -Wl-mf -Wl-mi -Wl-mk -Wl-ml -Wl-mm -Wl-md -Wl-mr -Wl-mu --no-warnings= -Wl--error-limit=42 --fp-model=3 -lrt --lsl-core=vtc --exceptions --strict --anachronisms --force-c++ -Ctc37x -o"Concurrency_Part1.elf" -Wl-o"Concurrency_Part1.hex:IHEX" $(OBJS)
 
-.PHONY: .Concurrency_Part1_Deadlock.elf.opt
+.PHONY: .Concurrency_Part1.elf.opt
 
-Concurrency_Part1_Deadlock.siz: Concurrency_Part1_Deadlock.elf makefile $(OPTIONAL_TOOL_DEPS)
+Concurrency_Part1.siz: Concurrency_Part1.elf makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
-	elfsize  "Concurrency_Part1_Deadlock.elf"
+	elfsize  "Concurrency_Part1.elf"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Concurrency_Part1_Deadlock.siz Concurrency_Part1_Deadlock.elf
+	-$(RM) Concurrency_Part1.siz Concurrency_Part1.elf
 	-@echo ' '
 
 secondary-outputs: $(SECONDARY_SIZE)
