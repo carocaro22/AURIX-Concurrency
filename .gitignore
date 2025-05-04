@@ -1,0 +1,6 @@
+*.o
+*.exe
+/build/
+*.log
+.DS_Store
+/TriCore Debug (TASKING)/*
