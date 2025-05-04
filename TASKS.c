@@ -26,9 +26,9 @@ void start_tasks(void) {
     xTaskCreate(task_2, "Task2", 256, NULL, 2, NULL);
     print_line("Created task 2");
 
-    vTaskStartScheduler();
-    print_line("Started Scheduler");
+    print_line("Starting Scheduler");
     print_line("--------------------------------------------------");
+    vTaskStartScheduler();
 }
 
 void task_1(void *arg)
