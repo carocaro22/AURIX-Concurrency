@@ -27,7 +27,12 @@ void task_1(void *arg)
 {
     while (1)
     {
-        slow_print("Hello from Task 1. \r\n");
+        if (xSemaphoreTake(xMutex, portMAX_DELAY) == pdTRUE)
+        {
+            slow_print("Hello from Task 1.\r\n");
+            xSemaphoreGive(xMutex);
+        }
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
 
@@ -35,7 +40,12 @@ void task_2(void *arg)
 {
     while (1)
     {
-        slow_print("Greetings from Task 2 \r\n.");
+        if (xSemaphoreTake(xMutex, portMAX_DELAY) == pdTRUE)
+        {
+            slow_print("Greetings from Task 2.\r\n");
+            xSemaphoreGive(xMutex);
+        }
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
 
