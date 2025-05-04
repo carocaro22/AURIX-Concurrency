@@ -2,8 +2,6 @@
 
 #define LED1_BLINKY_PERIOD_MS (250)
 
-SemaphoreHandle_t xMutex;
-
 void task_1(void *arg);
 void task_2(void *arg);
 void slow_print(const char *msg);
