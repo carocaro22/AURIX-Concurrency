@@ -51,7 +51,6 @@ void task_2(void *arg)
         if (xSemaphoreTake(xMutex, portMAX_DELAY) == pdTRUE)
         {
             slow_print("Greetings from Task 2.\r\n");
-            xSemaphoreGive(xMutex);
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
