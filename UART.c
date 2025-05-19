@@ -54,3 +54,17 @@ void print_character(char c)
     char buf[2] = { c, '\0' };  // Single char string
     IfxStdIf_DPipe_print(&g_ascStandardInterface, buf);
 }
+void slow_print(const char *msg)
+{
+    for (int i = 0; msg[i] != '\0'; i++) {
+        print_character(msg[i]);  // Char-by-char print
+        busy_wait_ms(200); // Artificial delay between chars, Human typing feel, 5 chars/sec
+    }
+}
+void busy_wait_ms(uint32 ms)
+{
+    volatile uint32 cycles = (10000 * ms); // (calculate this)
+    while (cycles--) {
+        __nop();  // No-operation to burn CPU cycles
+    }
+}

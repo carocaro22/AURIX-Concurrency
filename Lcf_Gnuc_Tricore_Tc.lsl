@@ -1,6 +1,6 @@
 /**********************************************************************************************************************
  * \file Lcf_Gnuc_Tricore_Tc.lsl
- * \brief Linker command file for Tasking compiler.
+ * \brief Linker command file for Gcc compiler.
  * \copyright Copyright (C) Infineon Technologies AG 2019
  * 
  * Use of this file is subject to the terms of use agreed between (i) you or the company in which ordinary course of 
@@ -127,6 +127,7 @@ MEMORY
     
     cpu2_dlmu (w!xp): org = 0x90020000, len = 64K
     cpu2_dlmu_nc (w!xp): org = 0xb0020000, len = 64K
+    
 }
 
 /* map local memory address to a global address */
@@ -1644,11 +1645,6 @@ SECTIONS
      * the -R option of the "strip" and "objcopy" utilities to remove
      * the .eh_frame section from the executable.
      */
-    .eh_frame_hdr :
-    { 
-        *(.eh_frame_hdr)
-    } > default_rom
-	
     .eh_frame  :
     {
         *(.gcc_except_table)
