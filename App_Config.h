@@ -9,5 +9,7 @@
 #include "Port/Io/IfxPort_Io.h"
 
 #include "UART.h"
+#include "LEDS.h"
+#include "EVADC.h"
 
 #endif /* APP_CONFIG_H_ */

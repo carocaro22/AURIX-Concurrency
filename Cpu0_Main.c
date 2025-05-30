@@ -18,6 +18,9 @@ void core0_main(void)
     // to prevent concurrent configuration or reinitialization
     initUART();
 
+    initLEDs();
+    turnOnLEDs();
+
     // Emit a sync event so that CPU1 knows UART is initialized
     // This is NOT meant to synchronize output — it just prevents CPU1
     // from writing to the UART before it's ready
@@ -35,6 +38,6 @@ void core0_main(void)
 
         // Fixed delay between prints
         // You can randomize this for a more chaotic UART conflict
-        busy_wait_ms(200);
+        // busy_wait_ms(200);
     }
 }
