@@ -3,25 +3,22 @@
 #include "IfxScuWdt.h"
 
 extern IfxCpu_syncEvent g_cpuSyncEvent;
+extern volatile uint32 g_spinlock;
 
 void core1_main(void)
 {
     IfxCpu_enableInterrupts();
-
-    // Watchdogs must be disabled here too, or CPU1 will reset
     IfxScuWdt_disableCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_disableSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
 
-    // Wait for CPU0 to finish UART initialization
-    // This avoids accessing the peripheral before it's properly configured
     IfxCpu_waitEvent(&g_cpuSyncEvent, 1);
 
     while (1)
     {
-        // Print a different message to demonstrate interleaving
+        while (!IfxCpu_setSpinLock(&g_spinlock, 1000))
+        {
+        }
         slow_print("Greetings from CPU1...\r\n");
-
-        // Slightly different delay to make overlap more likely
-        busy_wait_ms(150);
+        IfxCpu_resetSpinLock(&g_spinlock);
     }
 }
